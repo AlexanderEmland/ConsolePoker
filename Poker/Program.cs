@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime.InteropServices;
+using MyLibrary.Console;
 
 namespace Poker
 {
@@ -23,8 +24,8 @@ namespace Poker
         [DllImport("kernel32.dll", ExactSpelling = true)]
         private static extern IntPtr GetConsoleWindow();
 
-        public const int SCREEN_WIDTH = 150; //150
-        public const int SCREEN_HEIGHT = 40; //36
+        public static readonly int SCREEN_WIDTH = Constants.SCREEN_WIDTH; //150
+        public static readonly int SCREEN_HEIGHT = Constants.SCREEN_HEIGHT; //36
 
         static void Main(string[] args)
         {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyLibrary.Console;
+using MyLibrary.Console.Drawing;
+using MyLibrary.Console.Utils;
 
 namespace Poker
 {
@@ -15,6 +18,7 @@ namespace Poker
         private const int cardInnerHeight = 11; //10
         private const int communityWidth = 5 * (2 + cardInnerWidth) + 4 * cardMargin;
         private const int communityHeight = cardInnerHeight + 2;
+        
 
         private Dealer Dealer;
         private List<Player> Players;
@@ -166,8 +170,8 @@ namespace Poker
 
         private void DrawGameInfo()
         {
-            ConsoleDraw.TextAlign = TextAlign.Center;
-            ConsoleDraw.SideMargin = 1;
+            Draw.TextAlign = TextAlign.Center;
+            Draw.SideMargin = 0;
 
             TextBox textBox = new TextBox();
             textBox.AddString($"Pot: ${pot}");
@@ -176,15 +180,21 @@ namespace Poker
             textBox.VerticalAlignment = VerticalAlignment.Bottom;
             textBox.HorizontalAlignment = HorizontalAlignment.Center;
 
-            ConsoleDraw.String(ConsoleDraw.RepeatChar('─', Program.SCREEN_WIDTH - ConsoleDraw.SideMargin * 2), new Point(1, Program.SCREEN_HEIGHT - 2));
-            ConsoleDraw.String("(C)heck", AnchorPoint.Bottom, -1);
+            Draw.String(Text.RepeatChar('─', Program.SCREEN_WIDTH - Draw.SideMargin * 2), new Point(0, Program.SCREEN_HEIGHT - 2));
+            Draw.String("(C)heck", AnchorPoint.Bottom, -1);
+            Draw.TextAlign = TextAlign.Left;
+            Draw.String("(C)heck", new Point(2, Draw.SCREEN_HEIGHT-1));
+            Draw.TextAlign = TextAlign.Right;
+            Draw.String("(C)heck", new Point(Draw.SCREEN_WIDTH-2, Draw.SCREEN_HEIGHT - 1));
 
-            ConsoleDraw.TextAlign = TextAlign.Right;
-            ConsoleDraw.TextBox(textBox);
-            //ConsoleDraw.String(textBox.Width.ToString(), AnchorPoint.Right);
-            //ConsoleDraw.String(textBox.Height.ToString(), AnchorPoint.Right, 1);
-            //ConsoleDraw.DebugTextAlign("Hello world!");
-            //ConsoleDraw.DebugTextAlign("hello");
+            //textBox.Move(new Point(Draw.SCREEN_WIDTH / 2, Draw.SCREEN_HEIGHT / 2 + 5));
+
+            Draw.TextAlign = TextAlign.Right;
+            Draw.TextBox(textBox);
+            //Draw.String(textBox.Width.ToString(), AnchorPoint.Right);
+            //Draw.String(textBox.Height.ToString(), AnchorPoint.Right, 1);
+            //Draw.DebugTextAlign("Hello world!");
+            //Draw.DebugTextAlign("hello");
         }
 
         private void DrawUpperPlayers()
